@@ -1,10 +1,10 @@
 "use strict"
 
-const {body_fat, tdee, healthy_weight, find_body_frame, bmi, get_daily_targets, macros} = require('@presspage/fitnessjs');
+const {body_fat, tdee, healthy_weight, find_body_frame, bmi, get_daily_targets, macros, caloriesBurnt} = require('@presspage/fitnessjs');
 
-var weight = 210;
-var height = 72;
-var age = 42;
+var weight = 350;
+var height = 78;
+var age = 61;
 
 var fat = body_fat('male',weight,10);
 console.log('Body Fat: ',fat);
@@ -26,6 +26,10 @@ console.log("Daily Targets: ", daily);
 
 var macros_result = macros(weight,height,age);
 console.log("Macros: ",macros_result);
+
+var result = caloriesBurnt(1000, -0.015,false, age, 80, 80);
+console.log("Calroies Burnt: ",result);
+
 
 // Healthy Weight Stats: 195.8
 

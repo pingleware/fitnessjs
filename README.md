@@ -9,7 +9,7 @@ To install,
 # Getting Starting
 To use in a standard NodeJS file, first import the module,
 
-    const {body_fat, tdee, healthy_weight, find_body_frame, bmi, get_daily_targets, macros} = require('@presspage/fitnessjs);
+    const {body_fat, tdee, healthy_weight, find_body_frame, bmi, get_daily_targets, macros, caloriesBurnt} = require('@presspage/fitnessjs);
 
 then invoke the desired function passing the correct parameters,
 
@@ -19,7 +19,8 @@ then invoke the desired function passing the correct parameters,
     find_body_frame,
     bmi,
     get_daily_targets,
-    macros
+    macros,
+    caloriesBurnt
 
 To use in Electron within the Electron browser window, create a preload.js file that is loaded by the Electron browser window,
 
@@ -38,7 +39,7 @@ then inside the preload.js, add then import the module and add the functions,
 
     const {contextBridge} = require("electron");
 
-    const {body_fat, tdee, healthy_weight, find_body_frame, bmi, get_daily_targets} = require('@presspage/fitnessjs);
+    const {body_fat, tdee, healthy_weight, find_body_frame, bmi, get_daily_targets, macros, caloriesBurnt} = require('@presspage/fitnessjs);
 
     contextBridge.exposeInMainWorld(
         "fitness", {
@@ -48,7 +49,8 @@ then inside the preload.js, add then import the module and add the functions,
             find_body_frame: find_body_frame, 
             bmi: bmi, 
             get_daily_targets: get_daily_targets,
-            macros: macros
+            macros: macros,
+            caloriesBurnt: caloriesBurnt
         }
     );
 
@@ -203,6 +205,15 @@ returns,
     protein: '132'
     }
 
+## caloriesBurnt
+Calculates the calories burnt. Migrated from package https://www.npmjs.com/package/calories-burnt
+
+    caloriesBurnt(meters,slope,treadmill,age,restingHeartBeatsPerMinute,kilograms)
+
+results,
+
+    var result = caloriesBurnt(1000, -0.015,false, age, 80, 80);
+    // 87
 
 ## Sample Results
 For a 6 foot, 210 pound, 42 year old male,
@@ -222,6 +233,9 @@ For a 6 foot, 210 pound, 42 year old male,
         daily_fat: 43,
         daily_carbs: 134
     }
+    
+    Calories Burnt: 87
+    
     Macros:  {
     carbs: { weightloss: '175.0', weightmaintain: '279.0', weightgain: '330.0' },
     calories: {
