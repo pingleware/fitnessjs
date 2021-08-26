@@ -1,6 +1,6 @@
 {
   "name": "@presspage/fitnessjs",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Common fitness calculation functions and extras",
   "main": "index.js",
   "scripts": {
@@ -13,7 +13,8 @@
   "keywords": [
     "javascript",
     "fitness",
-    "tdee", "bmi"
+    "tdee",
+    "bmi"
   ],
   "author": {
     "name": "PressPage Entertainment Inc DBA PINGLEWARE",
