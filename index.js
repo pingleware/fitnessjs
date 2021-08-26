@@ -352,7 +352,65 @@ function bmi(metric, weight, height) {
     };
 }
 
+/**
+ * Modified from https://www.npmjs.com/package/fitness-macros-calculator to remove dependency
+ * 
+ * weight is in pounds
+ * height is in inches
+ * age is in years
+ */
+function macros(weight, height, age){
+	//lb to kg conversion
+	if (isNaN(weight)){
+		console.log(`No Weight Value`);
+		process.exit();
+	}
+	if(isNaN(height)){
+		console.log(`No Height Values`);
+		process.exit();
+	}
+	if(isNaN(age)){
+		console.log(`No Age Value`);
+		process.exit();
+	}
+	var nearExact = weight * 0.45359237;
+	var kg = Math.floor(nearExact);
+	//Get Height conversion to cm
+	var cm = Math.floor(height*2.54);
+	//Run Algorith
+	var bmr = 10 * kg + 6.25 * cm - 5 * age - 161
 
+	//calories
+	var caloriesv = {}
+	//weightloss
+	var dex = bmr * 0.04;
+	caloriesv.weightloss = bmr - dex;
+	//maintain %15 activity rating
+	caloriesv.weightmaintain = bmr + bmr * 0.15;
+	//gain %24 activity rating
+	caloriesv.weightgain = bmr + bmr * 0.24;
+
+	//Carbs
+	var carbsv = {}
+	//weightloss
+	carbsv.weightloss = Math.round(bmr/9.78754579).toFixed(1);
+	//weightmaintain
+	carbsv.weightmaintain = Math.round(bmr/6.1623616).toFixed(1);
+	//weightgain
+	carbsv.weightgain = Math.round(bmr/5.20249221).toFixed(1);
+
+	//protein
+	var proteinv = bmr/12.97087379;
+
+	//fat
+	var fatv = Math.round(bmr/37.00831025).toFixed(1);
+	return {
+		carbs:carbsv,
+		calories:caloriesv,
+		fat:fatv,
+		protein:JSON.stringify(Math.floor(proteinv))
+	};
+}
 
 module.exports = {
     body_fat,
@@ -360,5 +418,6 @@ module.exports = {
     healthy_weight,
     find_body_frame,
     bmi,
-    get_daily_targets
+    get_daily_targets,
+    macros
 }
