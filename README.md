@@ -4,7 +4,7 @@ A NodeJS module for common fitness calculation functions provided to you by Pres
 # Installation
 To install,
 
-    npm i @presspage/fitness-js
+    npm i @presspage/fitnessjs
 
 # Getting Starting
 To use in a standard NodeJS file, first import the module,
