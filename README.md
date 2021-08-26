@@ -9,7 +9,7 @@ To install,
 # Getting Starting
 To use in a standard NodeJS file, first import the module,
 
-    const {body_fat, tdee, healthy_weight, find_body_frame, bmi, get_daily_targets} = require('@presspage/fitness-js);
+    const {body_fat, tdee, healthy_weight, find_body_frame, bmi, get_daily_targets, macros} = require('@presspage/fitnessjs);
 
 then invoke the desired function passing the correct parameters,
 
@@ -18,7 +18,8 @@ then invoke the desired function passing the correct parameters,
     healthy_weight,
     find_body_frame,
     bmi,
-    get_daily_targets
+    get_daily_targets,
+    macros
 
 To use in Electron within the Electron browser window, create a preload.js file that is loaded by the Electron browser window,
 
@@ -37,7 +38,7 @@ then inside the preload.js, add then import the module and add the functions,
 
     const {contextBridge} = require("electron");
 
-    const {body_fat, tdee, healthy_weight, find_body_frame, bmi, get_daily_targets} = require('@presspage/fitness-js);
+    const {body_fat, tdee, healthy_weight, find_body_frame, bmi, get_daily_targets} = require('@presspage/fitnessjs);
 
     contextBridge.exposeInMainWorld(
         "fitness", {
@@ -46,7 +47,8 @@ then inside the preload.js, add then import the module and add the functions,
             healthy_weight: healthy_weight, 
             find_body_frame: find_body_frame, 
             bmi: bmi, 
-            get_daily_targets: get_daily_targets
+            get_daily_targets: get_daily_targets,
+            macros: macros
         }
     );
 
@@ -182,13 +184,33 @@ returns,
 		'daily_carbs': NNN
     }
 
+## macros
+Calculates the macros based on weight, height (in inches) and age (in years)
+
+    macros(weight, height, age)
+
+Modified from https://www.npmjs.com/package/fitness-macros-calculator to remove dependency
+
+returns,
+
+    carbs: { weightloss: '175.0', weightmaintain: '279.0', weightgain: '330.0' },
+    calories: {
+        weightloss: 1647.84,
+        weightmaintain: 1973.975,
+        weightgain: 2128.46
+    },
+    fat: '46.0',
+    protein: '132'
+    }
+
+
 ## Sample Results
 For a 6 foot, 210 pound, 42 year old male,
 
     Body Fat:  {
-        LEAN_BODY_MASS: 440.66,
-        BODY_FAT: -120.66000000000003,
-        BODY_FAT_PCT: -0.38
+        LEAN_BODY_MASS: 321.64000000000004,
+        BODY_FAT: -111.64000000000004,
+        BODY_FAT_PCT: -0.53
     }
     TDEE:  2411
     Body Frame:  large
@@ -199,6 +221,16 @@ For a 6 foot, 210 pound, 42 year old male,
         daily_protein: 252,
         daily_fat: 43,
         daily_carbs: 134
+    }
+    Macros:  {
+    carbs: { weightloss: '175.0', weightmaintain: '279.0', weightgain: '330.0' },
+    calories: {
+        weightloss: 1647.84,
+        weightmaintain: 1973.975,
+        weightgain: 2128.46
+    },
+    fat: '46.0',
+    protein: '132'
     }
 
 # Contact us
