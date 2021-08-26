@@ -206,3 +206,16 @@ The best contact method is via email at presspage.entertainment@gmail.com
 
 # License
 Creative Commons Attribution 4.0
+
+# EOL or End-of-Life Doctrine
+When a piece of software is useful, there should never be an EOL doctrine. The intention for this package is to achieve immoratlity ;).
+
+At some point of time in the future, this package may appear to be dead and abandon. The opposite will be true!
+
+When this project reaches that stage, this package has matured to a level where maintenance is no longer needed.
+
+When external dependencies are removed from a package, then an immortal package lifespan is achievable!
+
+Patrick Ingle
+Developer
+
