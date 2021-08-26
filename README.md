@@ -69,16 +69,16 @@ Calculates the body fat based on weight, wrist, waist, hip and forearm measureme
     Factor 4: Hip measurement (at fullest point) x 0.249
     Factor 5: Forearm measurement (at fullest point) x 0.434
  
-Lean Body Mass
---------------
+#### Lean Body Mass
+
     Factor 1 + Factor 2 - Factor 3 - Factor 4 + Factor 5
 
-Body Fat Weight
----------------
+#### Body Fat Weight
+
     Total bodyweight - Lean Body Mass
 
-Body Fat Percentage
--------------------
+#### Body Fat Percentage
+
     Body Fat Weight x 100) / total bodyweight
 
 ### Body Fat Formula For Men
@@ -86,28 +86,36 @@ Body Fat Percentage
     Factor 1: (Total body weight x 1.082) + 94.42
     Factor 2: Waist measurement x 4.15
 
-Lean Body Mass
---------------
+#### Lean Body Mass
+
     Factor 1 - Factor 2
 
-Body Fat Weight
----------------
+#### Body Fat Weight
+
     Total bodyweight - Lean Body Mass
 
-Body Fat Percentage
--------------------
+#### Body Fat Percentage
+
     (Body Fat Weight x 100) / total bodyweight
 
 ## tdee
 
     tdee(metric, sex, activity_level, weight, height, age)
 
+where activity_level is,
+
+    1.2   for "Sendentary: Little or No Exercise, Desk Job"
+    1.375 for "Lightly Active: Light exercise, Sports 1-3 days/week"
+    1.55  for "Moderate Active: Moderate exercise, Sports 3-5 days/week"
+    1.725 for "Very Active: Heavy Exercise, Sports 6-7 days/week"
+    1.9   for "Extremely Active: Exercise, Sports several times per day"
+
+
 ## healthy_weight
 
     healthy_weight(metric, sex, height, frame)
 
- Calculating Ideal Body Weight
- -----------------------------
+### Calculating Ideal Body Weight
 
 Your ideal body weight, or IBW, depends on both your gender and height. 
  
@@ -121,8 +129,7 @@ Using the equation, a 5-foot, 4-inch tall woman would have an ideal weight of 12
  
 A man who is 6 feet tall has an IBW of 178 pounds: IBW = 106 + (12 x 6) = 178.
  
-Effect of Frame Size on Ideal Weight
-------------------------------------
+### Effect of Frame Size on Ideal Weight
  
 Your body frame size helps determine your IBW, too. The equation calculates the IBW for someone with a medium frame. You can subtract 10 percent for a person of the same height with a small frame, and add 10 percent for a large-framed individual. So in the end, you end up with an IBW range.
 
@@ -148,11 +155,11 @@ Calculates the Body Mass Index or BMI for both metric and imperial measurements.
 
     bmi(metric, weight, height)
 
-English BMI Formula (Imperial) 
+### English BMI Formula (Imperial) 
  
     BMI = (Weight in Pounds / (Height in inches x Height in inches)) x 703
 
-Metric BMI Formula 
+### Metric BMI Formula 
 
     BMI = (Weight in Kilograms / (Height in Meters x Height in Meters))
  
@@ -173,6 +180,25 @@ returns,
 		'daily_protein': NNN,
 		'daily_fat': NNN,
 		'daily_carbs': NNN
+    }
+
+## Sample Results
+For a 6 foot, 210 pound, 42 year old male,
+
+    Body Fat:  {
+        LEAN_BODY_MASS: 440.66,
+        BODY_FAT: -120.66000000000003,
+        BODY_FAT_PCT: -0.38
+    }
+    TDEE:  2411
+    Body Frame:  large
+    Health Weight:  195.8
+    BMI:  28.48
+    Daily Targets:  {
+        daily_calorie: 1929,
+        daily_protein: 252,
+        daily_fat: 43,
+        daily_carbs: 134
     }
 
 # Contact us

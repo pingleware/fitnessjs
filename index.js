@@ -101,7 +101,7 @@ function body_fat_for_men(weight=0, waist=0) {
 
 	var body_fat_pct = 0;
 	if (weight > 0) {
-		body_fat_pct = round(((Number(weight) - Number(lbm)) * 100) / Number(weight)) / 100;
+		body_fat_pct = Math.round(((Number(weight) - Number(lbm)) * 100) / Number(weight)) / 100;
 	}
 	
 	return {
@@ -111,6 +111,15 @@ function body_fat_for_men(weight=0, waist=0) {
     };
 }
 
+/**
+ * Activity Levels:
+ * ---------------
+ * 1.2   = Sendentary: Little or No Exercise, Desk Job
+ * 1.375 = Lightly Active: Light exercise, Sports 1-3 days/week
+ * 1.55  = Moderate Active: Moderate exercise, Sports 3-5 days/week
+ * 1.725 = Very Active: Heavy Exercise, Sports 6-7 days/week
+ * 1.9   = Extremely Active: Exercise, Sports several times per day
+ */
 function tdee(metric, sex, activity_level, weight, height, age) {
     var results = 0.0;
 
@@ -125,7 +134,7 @@ function tdee(metric, sex, activity_level, weight, height, age) {
 	}
 	
 	// US-English
-	if (Numeric(metric) == 0) {
+	if (Number(metric) == 0) {
 		if (sex === 'male') {
 			results = Number(activity_level) * ((6.25 * Number(weight)) + (12.7 * Number(height)) - (6.76 * Number(age)) + 66);
 		} else {
