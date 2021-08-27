@@ -10,7 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@presspage/fitnessjs": "file:..",
-    "calories-burnt": "^1.0.2"
+    "@presspage/fitnessjs": "file:.."
   }
 }

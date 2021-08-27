@@ -1,6 +1,6 @@
 "use strict"
 
-const {body_fat, tdee, healthy_weight, find_body_frame, bmi, get_daily_targets, macros, caloriesBurnt} = require('@presspage/fitnessjs');
+const {body_fat, tdee, healthy_weight, find_body_frame, bmi, get_daily_targets, macros, caloriesBurnt, fitCalc} = require('@presspage/fitnessjs');
 
 var weight = 350;
 var height = 78;
@@ -55,3 +55,16 @@ console.log("Healthy Daily Targets: ", daily);
 
 var macros_result = macros(weight,height,age);
 console.log("Healthy Macros: ",macros_result);
+
+var fitcalc_result = fitCalc({
+    gender: 'male',
+    weight: 70,
+    height: 170,
+    age: 28,
+    dailyActivityLevel: 1.55,
+    bodyFatPercentage: 13,
+    bodyType: 'meso',
+    goal: 'mass-gain'
+});
+console.log(fitcalc_result);
+
