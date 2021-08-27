@@ -9,7 +9,7 @@ To install,
 # Getting Starting
 To use in a standard NodeJS file, first import the module,
 
-    const {body_fat, tdee, healthy_weight, find_body_frame, bmi, get_daily_targets, macros, caloriesBurnt} = require('@presspage/fitnessjs);
+    const {body_fat, tdee, healthy_weight, find_body_frame, bmi, get_daily_targets, macros, caloriesBurnt, fitCalc} = require('@presspage/fitnessjs);
 
 then invoke the desired function passing the correct parameters,
 
@@ -20,7 +20,8 @@ then invoke the desired function passing the correct parameters,
     bmi,
     get_daily_targets,
     macros,
-    caloriesBurnt
+    caloriesBurnt,
+    fitCalc
 
 To use in Electron within the Electron browser window, create a preload.js file that is loaded by the Electron browser window,
 
@@ -39,7 +40,7 @@ then inside the preload.js, add then import the module and add the functions,
 
     const {contextBridge} = require("electron");
 
-    const {body_fat, tdee, healthy_weight, find_body_frame, bmi, get_daily_targets, macros, caloriesBurnt} = require('@presspage/fitnessjs);
+    const {body_fat, tdee, healthy_weight, find_body_frame, bmi, get_daily_targets, macros, caloriesBurnt, fitCalc} = require('@presspage/fitnessjs);
 
     contextBridge.exposeInMainWorld(
         "fitness", {
@@ -50,7 +51,8 @@ then inside the preload.js, add then import the module and add the functions,
             bmi: bmi, 
             get_daily_targets: get_daily_targets,
             macros: macros,
-            caloriesBurnt: caloriesBurnt
+            caloriesBurnt: caloriesBurnt,
+            fitCalc, fitCalc
         }
     );
 
@@ -180,10 +182,10 @@ Calculates the daily targets based on weight and computed tdee
 returns,
 
     {
-		'daily_calorie': NNN,
-		'daily_protein': NNN,
-		'daily_fat': NNN,
-		'daily_carbs': NNN
+        daily_calorie: 1929,
+        daily_protein: 252,
+        daily_fat: 43,
+        daily_carbs: 134
     }
 
 ## macros
@@ -215,6 +217,36 @@ results,
     var result = caloriesBurnt(1000, -0.015,false, age, 80, 80);
     // 87
 
+## fitCalc
+Added from https://www.npmjs.com/package/fitcalc. Get perfect fitness diet macros and infos about how you can reach your goals just by passing an object.
+
+    fitCalc(options)
+
+where,
+
+    fitCalc({
+        gender: 'male',
+        weight: 70,
+        height: 170,
+        age: 28,
+        dailyActivityLevel: 1.55,
+        bodyFatPercentage: 13,
+        bodyType: 'meso',
+        goal: 'mass-gain'
+    });
+
+results,
+
+    {
+    bmr: 1685.44,
+    lbm: 60.9,
+    recommendedCourseOfAction: 'Fat loss recommended first',
+    requiredCaloricIntake: 2912.12,
+    weightChange: '1-2 kg',
+    optimalRatios: { proteinRatio: 40, carboHydrateRatio: 40, fatRatio: 20 },
+    macros: { protein: 291, carbs: 291, fat: 64 }
+    }
+
 ## Sample Results
 For a 6 foot, 210 pound, 42 year old male,
 
@@ -237,14 +269,24 @@ For a 6 foot, 210 pound, 42 year old male,
     Calories Burnt: 87
     
     Macros:  {
-    carbs: { weightloss: '175.0', weightmaintain: '279.0', weightgain: '330.0' },
-    calories: {
-        weightloss: 1647.84,
-        weightmaintain: 1973.975,
-        weightgain: 2128.46
-    },
-    fat: '46.0',
-    protein: '132'
+        carbs: { weightloss: '175.0', weightmaintain: '279.0', weightgain: '330.0' },
+        calories: {
+            weightloss: 1647.84,
+            weightmaintain: 1973.975,
+            weightgain: 2128.46
+        },
+        fat: '46.0',
+        protein: '132'
+    }
+
+    {
+        bmr: 1685.44,
+        lbm: 60.9,
+        recommendedCourseOfAction: 'Fat loss recommended first',
+        requiredCaloricIntake: 2912.12,
+        weightChange: '1-2 kg',
+        optimalRatios: { proteinRatio: 40, carboHydrateRatio: 40, fatRatio: 20 },
+        macros: { protein: 291, carbs: 291, fat: 64 }
     }
 
 # Contact us
